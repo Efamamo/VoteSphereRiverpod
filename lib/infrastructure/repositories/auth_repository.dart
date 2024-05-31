@@ -1,9 +1,8 @@
-import 'dart:convert';
-import 'package:http/http.dart' as http;
 import '../data_provider/auth_dataprovider.dart';
 import '../local_storage/secure_storage.dart';
 
 class AuthRepository {
+  // Login
   static Future<String> login(String username, String password) async {
     Map response = await AuthDataProvider.login(username, password);
 
@@ -24,6 +23,7 @@ class AuthRepository {
     }
   }
 
+  // Registration
   static Future<String> signUp(
       String username, String password, String email, String role) async {
     Map response =
@@ -46,6 +46,7 @@ class AuthRepository {
     }
   }
 
+  // Signout
   static Future<void> signout() async {
     final secureStorage = SecureStorage().secureStorage;
     await secureStorage.deleteAll();
