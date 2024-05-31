@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'package:http/http.dart' as http;
+
 import 'package:http/http.dart%20';
 import '../data_provider/settings_dataprovider.dart';
 import '../local_storage/secure_storage.dart';

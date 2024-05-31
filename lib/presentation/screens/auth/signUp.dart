@@ -31,9 +31,9 @@ class _SignUpPageState extends ConsumerState<SignUpPage> {
         print("signedUp");
         context.push('/home');
       } else if (next is SignupError) {
-        print('cant sign up');
+
         final snackBar = SnackBar(
-          content: Text('cant sign up'),
+          content: Text(next.error),
         );
 
         ScaffoldMessenger.of(context).showSnackBar(snackBar);

@@ -2,7 +2,7 @@ import 'package:http/http.dart%20';
 import '../data_provider/home_dataprovider.dart';
 
 import '../local_storage/secure_storage.dart';
-import 'package:http/http.dart' as http;
+
 import 'dart:convert';
 
 class HomeRespository {

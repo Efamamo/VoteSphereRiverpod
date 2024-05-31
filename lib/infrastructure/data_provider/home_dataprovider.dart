@@ -148,7 +148,6 @@ class HomeDataProvider {
 
     final token = await secureStorage.read(key: 'token');
     final group = await secureStorage.read(key: 'group');
-    final role = await secureStorage.read(key: 'role');
 
     String uri = 'http://10.0.2.2:9000/groups/${group}/members';
     final url = Uri.parse(uri);

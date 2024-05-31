@@ -23,8 +23,16 @@ class _LoginPageState extends ConsumerState<LoginPage> {
     final authNotifier = ref.watch(authProvider.notifier);
     ref.listen<AuthState>(authProvider, (previous, next) {
       if (next is LogInErrorState) {
-        const snackBar = SnackBar(
-          content: Text("Cant login"),
+        var error = '';
+        if (next.error == "Unauthorized"){
+          error = "Please enter all credentials";
+        }
+        else{
+          error = next.error;
+        }
+         final snackBar = SnackBar(
+
+          content: Text(error),
         );
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
       }
