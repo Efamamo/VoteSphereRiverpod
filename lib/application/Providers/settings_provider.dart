@@ -6,16 +6,19 @@ import '../../infrastructure/repositories/settings_repository.dart';
 class SettingsNotifier extends StateNotifier<SettingsState> {
   SettingsNotifier() : super(SettingsInitial());
 
+  // Load settings
   Future<void> loadSettings() async {
     state = SettingsLoadingState();
     final res = await SettingsRepository.loadSetting();
     state = SettingsLoadedState(username: res["username"], email: res["email"]);
   }
 
+  // Navigate to update password screen
   void navigateToChangePassword() {
     state = NavigateToUpdatePasswordState();
   }
 
+  // Change password
   Future<void> changePassword(String newPassword) async {
     state = SettingsLoadingState();
     final res = await SettingsRepository.changePassword(newPassword);
@@ -26,6 +29,7 @@ class SettingsNotifier extends StateNotifier<SettingsState> {
     }
   }
 
+  // Delete account
   Future<void> deleteAccount() async {
     state = SettingsLoadingState();
     final res = await SettingsRepository.deleteAccount();
@@ -37,6 +41,7 @@ class SettingsNotifier extends StateNotifier<SettingsState> {
   }
 }
 
+// Provider
 final settingsProvider =
     StateNotifierProvider<SettingsNotifier, SettingsState>((ref) {
   return SettingsNotifier();
