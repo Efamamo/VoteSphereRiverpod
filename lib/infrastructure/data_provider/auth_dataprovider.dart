@@ -1,8 +1,10 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+
 import '../local_storage/secure_storage.dart';
 
 class AuthDataProvider {
+  // Login
   static Future<Map> login(String username, String password) async {
     String uri = 'http://10.0.2.2:9000/auth/signin';
     final url = Uri.parse(uri);
@@ -16,6 +18,7 @@ class AuthDataProvider {
     return response;
   }
 
+  // Signup
   static Future<Map> signUp(
       String username, String password, String email, String role) async {
     String uri = 'http://10.0.2.2:9000/auth/signup';
@@ -36,6 +39,7 @@ class AuthDataProvider {
     return response;
   }
 
+  // Signout
   static Future<void> signout() async {
     final secureStorage = SecureStorage().secureStorage;
     await secureStorage.deleteAll();
