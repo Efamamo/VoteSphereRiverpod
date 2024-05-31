@@ -1,8 +1,10 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+
 import '../local_storage/secure_storage.dart';
 
 class SettingsDataProvider {
+  // Change Password
   static Future<Object> changePassword(newPassword) async {
     String uri = 'http://10.0.2.2:9000/auth/changePassword';
     final url = Uri.parse(uri);
@@ -20,6 +22,7 @@ class SettingsDataProvider {
     return res;
   }
 
+  // Delete Account
   static Future<Object> deleteAccount() async {
     final secureStorage = SecureStorage().secureStorage;
     final token = await secureStorage.read(key: 'token');
