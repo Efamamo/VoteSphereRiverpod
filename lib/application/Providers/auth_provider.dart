@@ -5,23 +5,17 @@ import '../../infrastructure/repositories/auth_repository.dart';
 class AuthNotifier extends StateNotifier<AuthState> {
   AuthNotifier() : super(AuthInitial());
 
-  void navigateToSignup() {
-    state = LoginNavigateToSignupState();
-  }
-
+  // Navigate to Login
   void navigateToLogin() {
     state = SignupNavigateToLoginState();
   }
 
-  Future<void> logIn(String username, String password) async {
-    String res = await AuthRepository.login(username, password);
-    if (res == "success") {
-      state = LogInSuccessState();
-    } else {
-      state = LogInErrorState(error: res);
-    }
+  // Navigate to Signup
+  void navigateToSignup() {
+    state = LoginNavigateToSignupState();
   }
 
+  // Signup
   Future<void> signUp(
       String username, String password, String email, String role) async {
     String res = await AuthRepository.signUp(username, password, email, role);
@@ -32,6 +26,17 @@ class AuthNotifier extends StateNotifier<AuthState> {
     }
   }
 
+  // Login
+  Future<void> logIn(String username, String password) async {
+    String res = await AuthRepository.login(username, password);
+    if (res == "success") {
+      state = LogInSuccessState();
+    } else {
+      state = LogInErrorState(error: res);
+    }
+  }
+
+  // Signout
   Future<void> signout() async {
     await AuthRepository.signout();
     state = SignoutState();
